@@ -27,20 +27,20 @@ public class ProjClientController {
 		return "index";
 	}
 	
-	@GetMapping("/all-tasks")
+	@GetMapping("/projects")
 	public String allTasks(HttpServletRequest request){
 		request.setAttribute("tasks", taskService.findAll());
 		request.setAttribute("mode", "MODE_TASKS");
 		return "index";
 	}
 	
-	@GetMapping("/new-task")
+	@GetMapping("/tasks")
 	public String newTask(HttpServletRequest request){
 		request.setAttribute("mode", "MODE_NEW");
 		return "index";
 	}
 	
-	@PostMapping("/save-task")
+	@PostMapping("/taskinsert")
 	public String saveTask(@ModelAttribute ImModel task, BindingResult bindingResult, HttpServletRequest request){
 		taskService.createNote(task);
 		request.setAttribute("tasks", taskService.findAll());
@@ -48,14 +48,14 @@ public class ProjClientController {
 		return "index";
 	}
 	
-	@GetMapping("/update-task")
+	@GetMapping("/taskupdate")
 	public String updateNote(@RequestParam int id, HttpServletRequest request){
 		request.setAttribute("task", taskService.findByName(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		return "index";
 	}
 	
-	@GetMapping("/delete-task")
+	@GetMapping("/taskdelete")
 	public String deleteTask(@RequestParam int id, HttpServletRequest request){
 		taskService.deleteNote(id);
 		request.setAttribute("tasks", taskService.findAll());

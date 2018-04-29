@@ -15,14 +15,14 @@ public class ImModel implements Serializable{
 	private int id;
 	private String pname;
 	private String devname;
-	private Long Pdate;
+	private String Pdate;
 	private Long hrs;
 	private Long ot;
 	private String des;
 	
 	public ImModel(){}
 	
-	public ImModel(String pname, String devname, Long pdate, Long hrs, Long ot, String des) {
+	public ImModel(String pname, String devname, String pdate, Long hrs, Long ot, String des) {
 		super();
 		this.pname = pname;
 		this.devname = devname;
@@ -56,11 +56,11 @@ public class ImModel implements Serializable{
 		this.devname = devname;
 	}
 
-	public Long getPdate() {
+	public String getPdate() {
 		return Pdate;
 	}
 
-	public void setPdate(Long pdate) {
+	public void setPdate(String pdate) {
 		Pdate = pdate;
 	}
 

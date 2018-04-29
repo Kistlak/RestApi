@@ -44,12 +44,9 @@ public class ImController {
 
     	ImModel note = TaskRepository.findById(id);
 
-        //note.setPname(noteDetails.getPname());
-        //note.setDevname(noteDetails.getDevname());
         note.setPdate(noteDetails.getPdate());
         note.setHrs(noteDetails.getHrs());
         note.setOt(noteDetails.getOt());
-        //note.setDes(noteDetails.getDes());
 
         ImModel updatedNote = TaskRepository.save(note);
         return updatedNote;

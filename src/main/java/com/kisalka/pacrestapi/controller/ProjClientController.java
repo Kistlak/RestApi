@@ -28,20 +28,25 @@ public class ProjClientController {
 	}
 	
 	@GetMapping("/projects")
-	public String allTasks(HttpServletRequest request){
+	public String projects(HttpServletRequest request){
+		return "Task";
+	}
+	
+	@GetMapping("/projectsupdel")
+	public String updeltask(HttpServletRequest request){
 		request.setAttribute("tasks", taskService.findAll());
 		request.setAttribute("mode", "MODE_TASKS");
 		return "index";
 	}
 	
 	@GetMapping("/tasks")
-	public String newTask(HttpServletRequest request){
+	public String insertpage(HttpServletRequest request){
 		request.setAttribute("mode", "MODE_NEW");
 		return "index";
 	}
 	
 	@PostMapping("/taskinsert")
-	public String saveTask(@ModelAttribute ImModel task, BindingResult bindingResult, HttpServletRequest request){
+	public String savetask(@ModelAttribute ImModel task, BindingResult bindingResult, HttpServletRequest request){
 		taskService.createNote(task);
 		request.setAttribute("tasks", taskService.findAll());
 		request.setAttribute("mode", "MODE_TASKS");
@@ -49,14 +54,14 @@ public class ProjClientController {
 	}
 	
 	@GetMapping("/taskupdate")
-	public String updateNote(@RequestParam int id, HttpServletRequest request){
+	public String updatetask(@RequestParam int id, HttpServletRequest request){
 		request.setAttribute("task", taskService.findByName(id));
 		request.setAttribute("mode", "MODE_UPDATE");
 		return "index";
 	}
 	
 	@GetMapping("/taskdelete")
-	public String deleteTask(@RequestParam int id, HttpServletRequest request){
+	public String deletetask(@RequestParam int id, HttpServletRequest request){
 		taskService.deleteNote(id);
 		request.setAttribute("tasks", taskService.findAll());
 		request.setAttribute("mode", "MODE_TASKS");

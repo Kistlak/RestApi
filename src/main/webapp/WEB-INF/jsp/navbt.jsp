@@ -127,6 +127,8 @@
         <li><a href="tasks" class="BorderRight">Insert Tasks</a></li>
 
 	  <li><a href="projects" class="BorderRight">View Tasks</a></li>
+	  
+	  <li><a href="projectsupdel" class="BorderRight">Update and Delete Tasks</a></li>
 
 	  </ul>
 	  

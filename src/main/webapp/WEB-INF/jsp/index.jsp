@@ -93,26 +93,26 @@ If they work any hours other than the standard working hours, it will be compute
 			<div class="container text-center">
 				<h3>Insert Tasks</h3>
 				<hr>
-				<form class="form-horizontal" method="POST" action="taskinsert">
+				<form class="form-horizontal" method="POST" action="/taskinsert">
 
 					<div class="form-group">
 						<label class="control-label col-md-3">Project Name</label>
 						<div class="col-md-7">
-							<input type="text" class="form-control" name="pname" />
+							<input type="text" class="form-control" name="pname" id="txtPname"/>
 						</div>				
 					</div>
 					
 					<div class="form-group">
 						<label class="control-label col-md-3">Developer Name</label>
 						<div class="col-md-7">
-							<input type="text" class="form-control" name="devname" />
+							<input type="text" class="form-control" name="devname" id="txtDevname"/>
 						</div>				
 					</div>
 					
 					<div class="form-group">
 						<label class="control-label col-md-3">Date</label>
 						<div class="col-md-7">
-							<input class="form-control" type="text" name="pdate" placeholder="dd-mm-yyyy" ">
+							<input class="form-control" type="text" name="pdate" placeholder="dd-mm-yyyy" id="txtPdate">
 						</div>				
 					</div>
 					
@@ -138,7 +138,7 @@ If they work any hours other than the standard working hours, it will be compute
 					</div>	
 					
 					<div class="form-group">
-						<input type="submit" class="btn btn-primary" value="Save"/>
+						<input type="submit" class="btn btn-primary" value="Save" id="btnRegister"/>
 					</div>
 					
 				</form>
@@ -149,7 +149,7 @@ If they work any hours other than the standard working hours, it will be compute
 			<div class="container text-center">
 				<h3>Update Tasks</h3>
 				<hr>
-				<form class="form-horizontal" method="POST" action="taskinsert">
+				<form class="form-horizontal" method="POST" action="/api/tasks">
 					<input type="hidden" name="id" value="${task.id}"/>
 					
 					<input type="hidden" name="pname" value="${task.pname}"/>
@@ -194,6 +194,31 @@ If they work any hours other than the standard working hours, it will be compute
 </div> <!-- End Of The Row Class -->
 		
 </div> <!-- End Of The Container Class -->
+	
+<script type="text/javascript">
+        $(document).ready(function () {
+
+            // Save the new user details
+            $('#btnRegister').click(function () {
+                $.ajax({
+                    url: '/api/tasks',
+                    method: 'POST',
+                    data: {
+                        pname: $('#txtPname').val(),
+                        devname: $('#txtDevname').val(),
+                        pdate: $('#txtPdate').val()
+                    },
+                    success: function () {
+                    	alert("Inserted"); 
+                    },
+                    error: function (jqXHR) {
+                        $('#divErrorText').text(jqXHR.responseText);
+                        $('#divError').show('fade');
+                    }
+                });
+            });
+        });
+    </script>	
 	
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></script>
